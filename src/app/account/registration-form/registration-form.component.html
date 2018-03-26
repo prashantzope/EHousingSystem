@@ -1,57 +1,72 @@
-<!--
+	
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Register</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
 
-<div class="row">
-	<div class="col-md-6">
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
 
-		<div class="card">
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
 
-			<div class="card-header bg-white">
-				<h4 class="card-title">Create your account</h4>
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						</div>
+						<div class="login-register">							
+							<a [routerLink]="['/login']"> Login
+							</a>
+				         </div>
+					</form>
+				</div>
 			</div>
-
-			<div class="card-block">
-
-				<form #f="ngForm" novalidate (ngSubmit)="registerUser(f)">
-
-
-					<div class="form-group">
-						<label for="first-name">First name</label>
-						<input id="first-name" type="text" required name="firstName" class="form-control" placeholder="Your first name" tmFocus ngModel>
-					</div>
-
-          	<div class="form-group">
-						<label for="last-name">Last name</label>
-						<input id="last-name" type="text" required name="lastName" class="form-control" placeholder="Your last name" ngModel>
-					</div>
- 
-          <div class="form-group">
-						<label for="email">Email</label>
-						<input id="email" type="text" required name="email" validateEmail class="form-control" placeholder="Email" ngModel  #email="ngModel">
-						<small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
-					</div>
-
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input id="password" type="password" required name="password" class="form-control" placeholder="Password" ngModel>
-					</div>
-         
-          <div class="form-group">
-						<label for="location">Location</label>
-						<input id="location" type="text" required name="location" class="form-control" placeholder="Location" ngModel>
-					</div>
-  
-				<div class="form-group">
-						<button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Sign Up</button>
-					 <app-spinner [isRunning]="isRequesting"></app-spinner> 
-					</div>
-
-					<div *ngIf="errors" class="alert alert-danger" role="alert">
-						<strong>Oops!</strong> {{errors}}
-					</div>
-
-				</form>
-			</div>
-
-		</div>
-	</div>
--->
+	
