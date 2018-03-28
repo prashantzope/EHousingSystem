@@ -53,4 +53,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   //       error => this.errors = error);
   //   }
   // }
+
+  login(s){
+    
+  }
 }
