@@ -12,15 +12,16 @@ import { Credentials } from 'app/Shared/model/Credentials.Interface';
 })
 export class LoginFormComponent implements OnInit, OnDestroy {
 
-  private subscription: Subscription;
-
+  private subscription: Subscription;  
   brandNew: boolean;
   errors: string;
   isRequesting: boolean;
   submitted: boolean = false;
   credentials: Credentials = { email: '', password: '' };
-
+ 
   //constructor(private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) { }
+
+  constructor(private router:Router){}
 
     ngOnInit() {
       this.errors = '';
@@ -56,5 +57,10 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   login(s){
     
+  }
+
+  naviagteToRegister(){
+  //  this.router.navigateByUrl("/register");
+  this.router.navigate(['/account/register']);   
   }
 }

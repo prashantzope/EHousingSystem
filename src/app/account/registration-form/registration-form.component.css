@@ -62,3 +62,9 @@ input::-webkit-input-placeholder {
    font-size: 11px;
    text-align: center;
 }
+
+.a-button {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
