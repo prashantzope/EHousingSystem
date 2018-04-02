@@ -1,36 +1,34 @@
-@echo off
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Deployment
+:: ----------
 
-echo start deploying
-cd client-app
-IF %ERRORLEVEL% NEQ 0 goto error
+:Deployment
+echo Handling node.js deployment.
 
-echo installing packages
-call npm install
-IF %ERRORLEVEL% NEQ 0 goto error
+:: 1. Select node version
+call :SelectNodeVersion
 
-echo building angular app
-call node node_modules\@angular\cli\bin\ng build -prod
-IF %ERRORLEVEL% NEQ 0 goto error
+:: 2. Install npm packages
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd !NPM_CMD! install --production
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
 
-echo removing old files
-rm -rf %DEPLOYMENT_TARGET%/*
-IF %ERRORLEVEL% NEQ 0 goto error
+:: 3. Angular Prod Build
+IF EXIST "%DEPLOYMENT_SOURCE%/.angular-cli.json" (
+echo Building App in %DEPLOYMENT_SOURCE%…
+pushd "%DEPLOYMENT_SOURCE%"
+call :ExecuteCmd !NPM_CMD! run build
+:: If the above command fails comment above and uncomment below one
+:: call ./node_modules/.bin/ng build –prod
+IF !ERRORLEVEL! NEQ 0 goto error
+popd
+)
 
-echo copying web.config
-xcopy web.config %DEPLOYMENT_TARGET%
-IF %ERRORLEVEL% NEQ 0 goto error
-
-echo copying app
-xcopy dist %DEPLOYMENT_TARGET% /S
-IF %ERRORLEVEL% NEQ 0 goto error
-
-goto end
-
-:error
-cd ..
-echo An error has occured during web site deployment.
-exit /b 1
-
-:end
-cd ..
-echo Finished successfully.
+:: 4. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%/dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
