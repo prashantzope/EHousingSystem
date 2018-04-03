@@ -30,10 +30,6 @@ IF NOT DEFINED DEPLOYMENT_TARGET (
   SET DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
 )
 
-IF NOT DEFINED DEPLOYMENT_TEMP (
-  SET DEPLOYMENT_TEMP=%ARTIFACTS%\temp
-)
-
 IF NOT DEFINED NEXT_MANIFEST_PATH (
   SET NEXT_MANIFEST_PATH=%ARTIFACTS%\manifest
 
@@ -93,41 +89,21 @@ goto :EOF
 echo Handling node.js deployment.
 
 :: 1. KuduSync
-::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-::call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TEMP%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-::IF !ERRORLEVEL! NEQ 0 goto error
-::)
-
-call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TEMP%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-IF !ERRORLEVEL! NEQ 0 goto error
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
 
 :: 2. Select node version
 call :SelectNodeVersion
 
 :: 3. Install npm packages
-IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
-  pushd "%DEPLOYMENT_TEMP%"
-  call :ExecuteCmd !NPM_CMD! install --production  
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
-
-:: 4. Angular Prod Build
-IF EXIST "%DEPLOYMENT_TEMP%/.angular-cli.json" (
-echo Building App in %DEPLOYMENT_TEMP%..
-pushd "%DEPLOYMENT_TEMP%"
- call :ExecuteCmd !NPM_CMD! run build
-:: If the above command fails comment above and uncomment below one
-:: call ./node_modules/.bin/ng build –prod
-IF !ERRORLEVEL! NEQ 0 goto error
-popd
-)
-
-:: 5. KuduSync to DEPLOYMENT_TARGET
-echo "Syncing site to Deployment Target"
-call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%\dist" -t "%DEPLOYMENT_TARGET%" -x true -i ".git;.hg;.deployment;deploy.cmd"
-IF !ERRORLEVEL! NEQ 0 goto error
-
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
