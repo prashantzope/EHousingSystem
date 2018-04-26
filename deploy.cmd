@@ -106,7 +106,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 IF EXIST "%DEPLOYMENT_SOURCE%/.angular-cli.json" (
 echo Building App in %DEPLOYMENT_SOURCE%…
 pushd "%DEPLOYMENT_SOURCE%"
-call :ExecuteCmd !NPM_CMD! run build
+call :ExecuteCmd ng build --prod
 IF !ERRORLEVEL! NEQ 0 goto error
 popd
 )

@@ -55,8 +55,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-  login(s){
-    
+  loginUser(s){
+    alert(s);
   }
 
   naviagteToRegister(){

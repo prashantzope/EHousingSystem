@@ -10,13 +10,14 @@ import {CounterComponent} from 'app/counter/counter.component'
 //       ];
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: AppContactComponent },
-    { path: 'counter', component: CounterComponent },
-    { path: 'fetch-data', component: AppContactComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    //{ path: 'account/login', component: AppContactComponent },
     { path: 'account', loadChildren: 'app/account/account.module#AccountModule' },
+    // { path: 'counter', component: CounterComponent },
+    // { path: 'fetch-data', component: AppContactComponent },
+    // { path: 'account', loadChildren: 'app/account/account.module#AccountModule' },
    // { path: 'account', loadChildren: () => AccountModule },
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: 'account' }
 ];
 
 @NgModule({

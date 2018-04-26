@@ -1,35 +1,96 @@
-.card{
-    margin-top: 30px;
-    margin: 0 auto;
-    max-width: 330px;
-   padding: 40px 40px;
-    box-shadow: 0px 0px 15px 0px #ff9000;
-}
-
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
-
-body, html{
+.login {
+    padding: 2rem 0rem;
+    min-height: 100vh;
+    max-height: 100%;
     height: 100%;
-    background-repeat: no-repeat;
-    background-color: #d3d3d3;
-    font-family: 'Oxygen', sans-serif;
+    /*background-image: url('../../assets/images/bg.jpg');*/
+    background-size: cover;
+    position: relative;
+    margin-top: 75px;
+    margin-left: 250px;
 }
+    .login__container {
+        width: 350px;
+        margin: 0 auto;
+        border: 1px solid pink;
+        padding: 1rem;
+        height: auto;
+        box-shadow: 0px 0px 5px 2px pink;
+        border-radius: 10px;
+    }
+    
+    .login__container--fields {
+        margin-bottom: 15px;
+    }
+    label {
+        width: 100%;
+       /* text-transform: uppercase;*/
+        color: #000;
+    }
+    input {
+        width: 100%;
+        border: 1px solid pink;
+        border-radius: 5px;
+        padding-left: 5px;
+        font-size: 12px;
+        text-transform: capitalize;
+        height: 27px;
+    }
 
-.main-login{
-    background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3)
-}
+    .login__userImage {
+        margin: 2rem 0rem;
+        text-align: center;
+        
+    }
+    .login__userImage.img {
+        width: 100px;
+    }
 
-label{
-	margin-bottom: 15px;
-}
+    .login__action,.Register__action {
+        text-align: center;
+        margin: 1rem 0rem;
+        
+    }
+    .login__action > button {
+            margin: 0px 5px;            
+            width: 90px;
+            height: 27px;
+            border: none;
+            background-color: pink;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 300;
+            cursor: pointer;
+            outline: none;
+            
+    }
+    .login__action button:hover {
+                border: none;
+                color: #fff;
+                background-color:violet;
+            }
+        
+
+    .register_action > button{
+        margin: 0px 10px;
+        margin-left: 150px;        
+        width: 90px;
+        height: 27px;
+        border: none;
+        background-color: pink;
+        border-radius: 12px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 300;
+        cursor: pointer;
+        outline: none;
+        
+    }
+    .register_action button:hover {
+        border: none;
+        color: #fff;
+        background-color:violet;
+    }

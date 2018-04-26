@@ -1,0 +1,14 @@
+.nav-active-link-admin {
+    color: #eb7475;
+    background-color: #f7f7f7;
+}
+
+.nav-active-link {
+    color: #41b883;
+    background-color: #f7f7f7;
+}
+
+.noPadding {
+    padding-left: 0;
+    padding-right: 0;
+}
