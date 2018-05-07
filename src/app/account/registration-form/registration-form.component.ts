@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { debug } from 'util';
+import { RegisterService } from 'app/account/registration-form/register.service';
 
 
-//import { UserRegistration } from '../../shared/models/user.registration.interface';
-//import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -11,19 +11,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
-
+  registerDetails: any = {} 
  errors: string;  
  isRequesting: boolean;
  submitted: boolean = false;
+
  
-//  constructor(private userService: UserService,private router: Router) { 
+  constructor(private router: Router,private registerService:RegisterService) { 
    
-//  }
+  }
 
   ngOnInit() {
           
   }
 
+
+  naviagteToLogin(){    
+    this.router.navigate(['/account/login']);  
+
+  }
+
+  signupUser(register){
+
+    this.registerDetails = {
+     Name : register.value.name,
+     Email: register.value.email,
+     UserName:register.value.userName,
+     Password:register.value.password,
+     ConfirmPassword:register.value.confirmPassword
+    } 
+
+    //this.registerService.registerUser(this.registerDetails);
+
+    this.registerService.registerUser(this.registerDetails).subscribe(
+      datas => console.log(datas)
+    );
+  }
   // registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
   //    this.submitted = true;
   //    this.isRequesting = true;

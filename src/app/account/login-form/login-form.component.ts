@@ -2,6 +2,8 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Credentials } from 'app/Shared/model/Credentials.Interface';
+import { debug } from 'util';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
 
 
 
@@ -56,7 +58,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   // }
 
   loginUser(s){
-    alert(s);
+    debugger
+    console.log(s);
   }
 
   naviagteToRegister(){

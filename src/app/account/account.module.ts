@@ -5,6 +5,7 @@ import {RegistrationFormComponent} from './registration-form/registration-form.c
 import {LoginFormComponent} from './login-form/login-form.component';
 import { FormsModule }   from '@angular/forms';
 import { SharedModule } from 'app/Shared/shared.modules';
+import { RegisterService } from 'app/account/registration-form/register.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,7 @@ import { SharedModule } from 'app/Shared/shared.modules';
   declarations: [
     LoginFormComponent,
     RegistrationFormComponent
-  ]
+  ],
+  providers:[RegisterService]
 })
 export class AccountModule { }
