@@ -34,7 +34,7 @@ export class RegistrationFormComponent implements OnInit {
   signupUser(register){
 
     this.registerDetails = {
-     Name : register.value.name,
+     FirstName : register.value.name,
      Email: register.value.email,
      UserName:register.value.userName,
      Password:register.value.password,
@@ -44,8 +44,9 @@ export class RegistrationFormComponent implements OnInit {
     //this.registerService.registerUser(this.registerDetails);
 
     this.registerService.registerUser(this.registerDetails).subscribe(
-      datas => console.log(datas)
+      datas => console.log(datas)     
     );
+    this.router.navigate(['/account/login']);  
   }
   // registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
   //    this.submitted = true;

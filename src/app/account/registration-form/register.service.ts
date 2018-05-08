@@ -10,10 +10,10 @@ export class RegisterService
 
     constructor(private _http:Http){}
     registerUser(registerUser:any){
-        const body = JSON.stringify(registerUser);
+        const body = JSON.stringify(registerUser);               
         const header = new Headers();
         header.append("Content-Type","application/json");
-        return this._http.post(AppSettings.API_REGISTER_ENDPOINT,
+        return this._http.post(AppSettings.API_REGISTER_ENDPOINT+"Account",
                  body,
                  { headers: header })
                  .map(
