@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { debug } from 'util';
 import { RegisterService } from 'app/account/registration-form/register.service';
-
+import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { RegisterService } from 'app/account/registration-form/register.service'
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
+  form : FormGroup;
   registerDetails: any = {} 
  errors: string;  
  isRequesting: boolean;
@@ -44,9 +45,16 @@ export class RegistrationFormComponent implements OnInit {
     //this.registerService.registerUser(this.registerDetails);
 
     this.registerService.registerUser(this.registerDetails).subscribe(
-      datas => console.log(datas)     
-    );
-    this.router.navigate(['/account/login']);  
+        datas =>   {
+          debugger
+          this.router.navigate(['/account/login']);  
+      },
+    
+    errors => {
+      debugger
+      alert(errors);
+    } );
+    
   }
   // registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
   //    this.submitted = true;

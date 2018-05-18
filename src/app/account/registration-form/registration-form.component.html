@@ -3,7 +3,7 @@
 				<div class="panel_heading">Register</div>
 				<div class="register_container">
 					<form (ngSubmit)="signupUser(register)" #register="ngForm">
-						
+						{{register.name}}
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Your Name</label>
 							<div class="cols-sm-10">
@@ -12,6 +12,10 @@
 									<input type="text" class="form-control" ngModel name="name" id="name"   placeholder="Enter your Name"/>
 								</div>
 							</div>
+							<div class="alert alert-danger" role="alert" 
+							*ngIf="!register.FirstName.valid && register.FirstName.title.touched">
+						   You must enter a title
+					   </div>
 						</div>
 
 						<div class="form-group">
