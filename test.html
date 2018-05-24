@@ -1,0 +1,55 @@
+
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<script>
+function redirect(){
+
+var val = "Welcome to new application1234";
+//using get
+//window.open("http://localhost:52935/Home/Contact?data=" + val,"","width=200,height=100")
+
+
+//using Post
+var $form = $("<form/>").attr("id", "data_form")
+                            .attr("action", "http://localhost:52935/Home/Contact")
+                            .attr("method", "post")
+							.attr("target", "myActionWin");						
+							
+            $("body").append($form);
+ 
+            //Append the values to be send
+            AddParameter($form, "data", val);
+          //  AddParameter($form, "technology", $("#ddlTechnolgy").val());
+ 
+            //Send the Form
+            //$form[0].submit();
+			
+			//document.data_form.target = "myActionWin";
+			window.open("","myActionWin","width=500,height=300,toolbar=0");
+			
+			//document.form1.submit();
+			
+			$form[0].submit();
+        
+	
+	
+}
+
+function AddParameter(form, name, value) {
+        var $input = $("<input />").attr("type", "hidden")
+                                .attr("name", name)
+                                .attr("value", value);
+        form.append($input);
+    }
+
+</script>
+<body>
+<input type="button" value="Click" onClick="redirect()"/>
+
+<a href="#" id="printReport" target="_blank" >Print</a>
+<
+</body>
+</html>
