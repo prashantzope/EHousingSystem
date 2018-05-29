@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { routing }  from './account-routing';
 import {RegistrationFormComponent} from './registration-form/registration-form.component';
 import {LoginFormComponent} from './login-form/login-form.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { SharedModule } from 'app/Shared/shared.modules';
 import { RegisterService } from 'app/account/registration-form/register.service';
 @NgModule({
@@ -11,7 +11,8 @@ import { RegisterService } from 'app/account/registration-form/register.service'
     CommonModule,
     routing,
     FormsModule    ,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   declarations: [
     LoginFormComponent,

@@ -2,64 +2,104 @@
 			<div class="register">
 				<div class="panel_heading">Register</div>
 				<div class="register_container">
-					<form (ngSubmit)="signupUser(register)" #register="ngForm">
-						{{register.name}}
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
+					<form class="form-horizontal" [formGroup] = "signupForm">
+						
+						<div class="form-group" >
+							<label for="lfirstName" class="cols-sm-2 control-label required">First Name</label>							
+							<div class="col-sm-12" >								
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" ngModel name="name" id="name"   placeholder="Enter your Name"/>
-								</div>
-							</div>
-							<div class="alert alert-danger" role="alert" 
-							*ngIf="!register.FirstName.valid && register.FirstName.title.touched">
-						   You must enter a title
-					   </div>
+									<input type="text" id="firstName" class="form-control" formControlName= "firstName"    placeholder="Enter your first name"/>
+									<field-error-display 
+									[displayError]="isFieldValid('firstName')" 
+									errorMessage="Please enter your first name">
+								  </field-error-display>																	 
+								
+							</div>	
+													
 						</div>
 
+						<div class="form-group" >
+								<label for="lastName" class="cols-sm-2 control-label required">Last Name</label>							
+								<div class="col-sm-12" >								
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" id="lastName" class="form-control"formControlName="lastName"   placeholder="Enter your last name"/> 
+										<field-error-display 
+										[displayError]="isFieldValid('lastName')" 
+										errorMessage="Please enter your last name">
+									  </field-error-display>																	 
+									
+								</div>															
+							</div>
+
 						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
+							<label for="email" class="cols-sm-2 control-label required">Your Email</label>
+							<div class="col-sm-12">								
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input ngModel type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-								</div>
+									<input type="text" class="form-control" formControlName="email"   placeholder="Enter your Email"/>
+									<field-error-display 
+									[displayError]="isFieldValid('email')" 
+									errorMessage="Please enter your email">
+								  </field-error-display>								
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Username</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
+							<label for="username" class="cols-sm-2 control-label required">Username</label>
+							<div class="col-sm-12">							
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input ngModel type="text" class="form-control" name="userName" id="userName"  placeholder="Enter your Username"/>
-								</div>
+									<input  type="text" class="form-control" formControlName="userName"   placeholder="Enter your Username"/>
+									<field-error-display 
+									[displayError]="isFieldValid('userName')" 
+									errorMessage="Please enter your user name">
+								  </field-error-display>
+								
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input ngModel type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								<label for="mobileNumber" class="cols-sm-2 control-label required">Mobile Number</label>
+								<div class="col-sm-12">									
+										<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+										<input  type="text" class="form-control" formControlName="mobileNumber"  placeholder="Enter your mobile Number"/>
+										<field-error-display 
+										[displayError]="isFieldValid('mobileNumber')" 
+										errorMessage="Please enter your mobile number">
+									  </field-error-display>
+									
 								</div>
+							</div>
+	
+
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label required">Password</label>							
+								<div class="col-sm-12">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" formControlName="password"  placeholder="Enter your Password"/>
+									<field-error-display 
+									[displayError]="isFieldValid('password')" 
+									errorMessage="Please enter your password">
+								  </field-error-display>
+								
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
+							<label for="confirm" class="cols-sm-2 control-label required">Confirm Password</label>
+							<div class="col-sm-12">								
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input ngModel type="password" ngModel class="form-control" name="confirmPassword" id="confirmPassword"  placeholder="Confirm your Password"/>
-								</div>
+									<input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword"  placeholder="Confirm your Password"/>
+									<field-error-display 
+									[displayError]="isFieldValid('confirmPassword')" 
+									errorMessage="Please enter your confirm password">
+								  </field-error-display>
+								
 							</div>
 						</div>
 
 						<div class="register_action">
-							<button >Register</button>
+							<!-- [disabled] = "!signupForm.valid" if you want to disabled  -->
+							<button  (click)="signupUser()"  >Register</button>
 							<button (click) ="naviagteToLogin()">Login</button>
 						</div>						
 					</form>

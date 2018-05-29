@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.control-label.required:after { 
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 2px;
+   
+  }
+
+  label{
+    font-family: 'Montserrat-light';
+    padding-left: 15px;
+    margin-bottom: -15px;
+    color: pink;
+  }

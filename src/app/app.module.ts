@@ -10,18 +10,14 @@ import { NavComponent } from 'app/nav/nav.component';
 import { SharedModule } from 'app/Shared/shared.modules';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     AppContactComponent,
     CounterComponent,
     NavComponent
-    
- 
   ],
-  imports: [  
- // AccountModule,
+  imports: [    
     BrowserModule,
     FormsModule,
     HttpModule,
