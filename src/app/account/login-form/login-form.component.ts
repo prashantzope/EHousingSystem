@@ -1,9 +1,10 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Credentials } from 'app/Shared/model/Credentials.Interface';
 import { debug } from 'util';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
+
 
 
 
@@ -23,9 +24,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
  
   //constructor(private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) { }
 
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    
+  }
 
-    ngOnInit() {
+    ngOnInit() {            
       this.errors = '';
     // subscribe to router event
     // this.subscription = this.activatedRoute.queryParams.subscribe(
@@ -57,9 +60,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-  loginUser(s){
-    debugger
-    console.log(s);
+  loginUser(s){    
+    console.log(s); 
   }
 
   naviagteToRegister(){
